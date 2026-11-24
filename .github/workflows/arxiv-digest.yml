@@ -24,15 +24,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
       - name: Build today's digest
         id: digest
+        # Unbuffered, or Python flushes the whole progress log at the end.
+        env:
+          PYTHONUNBUFFERED: "1"
         run: |
           if [ -n "${{ inputs.lookback }}" ]; then
             python arxiv-digest/fetch_papers.py --lookback "${{ inputs.lookback }}"
