@@ -1,6 +1,6 @@
 # research-automations
 
-Automations that run my PhD research workflow — literature tracking, experiment
+Automations that run my master's research workflow — literature tracking, experiment
 bookkeeping, and the recurring chores around a speech-and-cardiac-signals
 thesis. Each one is a tool I actually use, kept working rather than written once
 and abandoned.
