@@ -1,0 +1,82 @@
+{
+  "lookback_days": 14,
+  "max_results_per_query": 25,
+  "request_delay_seconds": 5,
+  "categories": [
+    "eess.AS",
+    "eess.SP",
+    "eess.IV",
+    "cs.SD",
+    "cs.LG",
+    "cs.CL",
+    "cs.AI",
+    "cs.CV",
+    "q-bio.QM",
+    "q-bio.NC",
+    "stat.ML"
+  ],
+  "topics": [
+    {
+      "label": "Speech & voice biomarkers",
+      "phrases": [
+        "speech biomarker",
+        "voice biomarker",
+        "vocal biomarker",
+        "speech-based screening"
+      ]
+    },
+    {
+      "label": "Heart failure & cardiac function",
+      "phrases": [
+        "heart failure",
+        "congestive heart failure",
+        "cardiac dysfunction",
+        "ejection fraction"
+      ]
+    },
+    {
+      "label": "Heart sounds & phonocardiography",
+      "phrases": [
+        "heart sound",
+        "phonocardiogram",
+        "phonocardiography",
+        "murmur detection"
+      ]
+    },
+    {
+      "label": "ECG & arrhythmia models",
+      "phrases": [
+        "ECG classification",
+        "electrocardiogram deep learning",
+        "atrial fibrillation detection"
+      ]
+    },
+    {
+      "label": "Computational paralinguistics",
+      "phrases": [
+        "computational paralinguistics",
+        "paralinguistic",
+        "eGeMAPS",
+        "openSMILE"
+      ]
+    },
+    {
+      "label": "Health audio & pathological speech",
+      "phrases": [
+        "pathological speech",
+        "dysarthria",
+        "respiratory sound",
+        "cough classification"
+      ]
+    },
+    {
+      "label": "Augmentation, leakage & evaluation pitfalls",
+      "phrases": [
+        "data leakage",
+        "diffusion-based augmentation",
+        "synthetic data augmentation",
+        "cross-validation bias"
+      ]
+    }
+  ]
+}

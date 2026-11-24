@@ -1,0 +1,58 @@
+name: arXiv digest
+
+on:
+  schedule:
+    # 07:00 UTC every day. GitHub's shared runners can start a cron job late,
+    # so treat the time as "some time after 07:00".
+    - cron: "0 7 * * *"
+  workflow_dispatch:
+    inputs:
+      lookback:
+        description: "Days back to accept (blank = config default)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: arxiv-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build today's digest
+        id: digest
+        run: |
+          if [ -n "${{ inputs.lookback }}" ]; then
+            python arxiv-digest/fetch_papers.py --lookback "${{ inputs.lookback }}"
+          else
+            python arxiv-digest/fetch_papers.py
+          fi
+
+      - name: Commit the digest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add arxiv-digest/digests arxiv-digest/state
+          if git diff --staged --quiet; then
+            echo "Nothing new to commit."
+          else
+            git commit -m "arxiv-digest: $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Summary
+        run: |
+          echo "### arXiv digest" >> "$GITHUB_STEP_SUMMARY"
+          echo "New papers: ${{ steps.digest.outputs.new_papers }}" >> "$GITHUB_STEP_SUMMARY"
