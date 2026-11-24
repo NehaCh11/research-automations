@@ -1,6 +1,6 @@
 # research-automations
 
-Automations that run my master's research workflow — literature tracking, experiment
+Automations that run my master's research workflow: literature tracking, experiment
 bookkeeping, and the recurring chores around a speech-and-cardiac-signals
 thesis. Each one is a tool I actually use, kept working rather than written once
 and abandoned.
@@ -22,7 +22,7 @@ filters and metrics lean that way. The machinery is general.
   done without it. `arxiv-digest` has none.
 - **Idempotent.** Running twice does not duplicate work or double-post.
 - **State is visible.** Anything a tool remembers between runs is a file in the
-  repo, not a hidden cache — so it is reviewable, and a bad run is fixable with
+  repo, not a hidden cache. That makes it reviewable, and a bad run fixable with
   an edit.
 - **Degrade, don't crash.** A scheduled job that loses one query should still
   deliver the rest and say what it missed.

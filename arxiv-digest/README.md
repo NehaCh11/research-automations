@@ -12,7 +12,7 @@ phrase instead of by category, and remembers what it has shown you.
 
 ## How it works
 
-1. Each topic in [`config.json`](config.json) becomes one arXiv API query — its
+1. Each topic in [`config.json`](config.json) becomes one arXiv API query: its
    phrases OR'd together, bounded to the lookback window, newest first.
 2. Results are filtered three ways: published within `lookback_days`, listed
    under one of the allowed `categories`, and not already in
@@ -24,7 +24,7 @@ phrase instead of by category, and remembers what it has shown you.
 
 A paper matching two topics is reported once, under the first topic that claims
 it. If nothing new turns up, no digest file is written and the workflow commits
-nothing — an empty file every day would just be noise.
+nothing. An empty file every day would just be noise.
 
 ## Running it yourself
 
@@ -39,7 +39,7 @@ python fetch_papers.py
 python fetch_papers.py --lookback 30
 ```
 
-No dependencies — standard library only.
+No dependencies, standard library only.
 
 ## Configuring it
 
