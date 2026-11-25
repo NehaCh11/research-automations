@@ -14,7 +14,8 @@ Automations for ordinary life rather than for the thesis live in [daily-automati
 
 | Tool | What it does | Runs on |
 | --- | --- | --- |
-| [arxiv-digest](arxiv-digest/) | Pulls new arXiv papers on speech, cardiac and audio-ML topics, writes a dated Markdown digest, commits it | GitHub Actions, daily 07:00 UTC |
+| [arxiv-digest](arxiv-digest/) | Pulls new arXiv papers on speech, cardiac and audio-ML topics, writes a dated Markdown digest, commits it | GitHub Actions, daily 07:17 UTC |
+| [citation-watch](citation-watch/) | Follows the citation graph from the papers this thesis rests on, and the published literature arXiv never carries, via OpenAlex | GitHub Actions, daily 06:43 UTC |
 
 ## How these are built
 

@@ -1,0 +1,48 @@
+{
+  "lookback_days": 30,
+  "max_results_per_query": 25,
+  "request_delay_seconds": 12,
+  "exclude_preprints": true,
+  "seeds": [
+    {
+      "label": "GeMAPS feature set (Eyben et al. 2015)",
+      "id": "W2239141610",
+      "doi": "10.1109/TAFFC.2015.2457417",
+      "why": "the acoustic parameter set the thesis is built on"
+    },
+    {
+      "label": "Acoustic speech analysis in decompensated HF (Murton et al. 2017)",
+      "id": "W2766371122",
+      "doi": "10.1121/1.5007092",
+      "why": "the canonical speech-and-heart-failure paper"
+    },
+    {
+      "label": "Remote speech analysis in hospitalised HF patients (JACC HF 2021)",
+      "id": "W4200344040",
+      "doi": "10.1016/j.jchf.2021.08.008",
+      "why": "the clinical anchor for admission-to-discharge speech change"
+    }
+  ],
+  "topics": [
+    {
+      "label": "Speech and cardiac status",
+      "phrase": "\"heart failure\" speech",
+      "field": "title_and_abstract"
+    },
+    {
+      "label": "Heart sounds and murmurs",
+      "phrase": "\"phonocardiogram\"",
+      "field": "title_and_abstract"
+    },
+    {
+      "label": "Voice biomarkers in clinical populations",
+      "phrase": "\"voice biomarker\"",
+      "field": "title_and_abstract"
+    },
+    {
+      "label": "Evaluation pitfalls in clinical ML",
+      "phrase": "\"data leakage\"",
+      "field": "title"
+    }
+  ]
+}

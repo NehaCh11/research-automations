@@ -1,0 +1,70 @@
+name: Citation watch
+
+on:
+  schedule:
+    # 06:43 UTC daily. Off the hour on purpose: GitHub queues scheduled jobs
+    # globally and the top of the hour is the most congested slot. Also kept
+    # clear of arxiv-digest so the two do not start together.
+    - cron: "43 6 * * *"
+  workflow_dispatch:
+    inputs:
+      lookback:
+        description: "Days back to accept (blank = config default)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: citation-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Run the tests
+        working-directory: citation-watch
+        run: python -m unittest test_watch
+
+      - name: Build today's citation watch
+        id: watch
+        env:
+          PYTHONUNBUFFERED: "1"
+          # Optional. OpenAlex's polite pool is faster and far less likely to
+          # throttle, but it means sending an email address, so it is opt-in:
+          # set an OPENALEX_MAILTO repository secret to use it. Absent, the
+          # tool falls back to the common pool and says so in the log.
+          OPENALEX_MAILTO: ${{ secrets.OPENALEX_MAILTO }}
+        run: |
+          if [ -n "${{ inputs.lookback }}" ]; then
+            python citation-watch/watch.py --lookback "${{ inputs.lookback }}"
+          else
+            python citation-watch/watch.py
+          fi
+
+      - name: Commit the digest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add citation-watch/digests citation-watch/state
+          if git diff --staged --quiet; then
+            echo "Nothing new to commit."
+          else
+            git commit -m "citation-watch: $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Summary
+        run: |
+          echo "### Citation watch" >> "$GITHUB_STEP_SUMMARY"
+          echo "New works: ${{ steps.watch.outputs.new_works }}" >> "$GITHUB_STEP_SUMMARY"
