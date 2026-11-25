@@ -8,6 +8,8 @@ and abandoned.
 The research is on speech biomarkers for heart failure detection, so the topic
 filters and metrics lean that way. The machinery is general.
 
+Automations for ordinary life rather than for the thesis live in [daily-automations](https://github.com/NehaCh11/daily-automations). The split is by lifespan, not topic.
+
 ## Tools
 
 | Tool | What it does | Runs on |
